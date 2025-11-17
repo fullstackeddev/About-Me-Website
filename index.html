@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiden | Festive Designer Profile</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Set default font to Inter --><style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* True black */
+            color: #F8F8F8; /* Near-white for primary text */
+        }
+
+        /* --- ANIME BACKGROUND SIMULATION --- */
+        /* Pseudo-element for the deep, cool-toned anime background texture/gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3; 
+            /* Subtle radial gradient for depth and cool-tone */
+            background: radial-gradient(circle at 50% 10%, rgba(240, 240, 240, 0.05) 0%, rgba(0, 0, 0, 0) 60%),
+                        linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 30%),
+                        #000000; 
+            /* Add a subtle grainy texture overlay */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKkQoAAAADklEQVQIW2NgYGBgYDAAAAIAAHbUv/0AAAAASUVORK5CYII=');
+            opacity: 0.95;
+        }
+
+        /* --- GLOW EFFECTS --- */
+        .white-glow {
+            color: #F8F8F8;
+            text-shadow:
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #e0e0e0,
+                0 0 50px #c0c0c0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        /* Active tab glow */
+        .festive-tab.active {
+            box-shadow: 0 4px 0 -1px #fff; 
+            color: #ffffff; 
+        }
+
+        /* PFP specific styling for circular glow */
+        .pfp-glow {
+            border-radius: 50%;
+            box-shadow: 
+                0 0 15px rgba(255, 255, 255, 0.6), 
+                0 0 30px rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            width: 150px;
+            height: 150px;
+        }
+
+        /* --- SNOW ANIMATION --- */
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1; /* Layer between content and background */
+        }
+
+        .flake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+    </style>
+    <!-- Custom Tailwind Config for the B&W look --><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#000000', /* True black */
+                        'light-contrast': '#F8F8F8', /* Near-white */
+                        'subtle-gray': '#1A1A1A', /* Darker gray for borders */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary-dark text-light-contrast min-h-screen antialiased relative overflow-x-hidden">
+    
+    <!-- Animated Falling Snow Container --><div id="snow-container" class="snow-container"></div>
+    
+    <!-- Container: Max width, centered, responsive padding --><div class="max-w-5xl mx-auto p-4 sm:p-8 lg:p-12 relative z-10">
+
+        <!-- Header Section with White Glow --><header class="mb-10 pt-8 pb-8 text-center">
+            <h1 class="text-6xl sm:text-8xl font-extrabold tracking-tight white-glow">
+                Aiden | Festive Designer Profile
+            </h1>
+            <!-- Updated Subtitle to reflect age and location --><p class="text-xl sm:text-2xl mt-2 text-gray-300 font-light">
+                17 Y.O. Coder ❖ Florida-based Architect
+            </p>
+        </header>
+
+        <!-- Tabbed Navigation --><nav class="mb-12 border-y border-subtle-gray text-center">
+            <div class="inline-flex space-x-6 sm:space-x-12 -mb-px">
+                <!-- Tab 1: Profile (Active by default) --><button 
+                    onclick="showTab('profile', this)" 
+                    class="festive-tab active text-lg sm:text-xl font-semibold py-4 px-3 transition duration-300 focus:outline-none tracking-wide uppercase"
+                    data-tab-name="profile"
+                >
+                    ★ Profile
+                </button>
+                
+                <!-- Tab 2: Experience --><button 
+                    onclick="showTab('experience', this)" 
+                    class="festive-tab text-lg sm:text-xl font-semibold py-4 px-3 transition duration-300 focus:outline-none tracking-wide uppercase"
+                    data-tab-name="experience"
+                >
+                    ★ Journey
+                </button>
+
+                <!-- Tab 3: Contact --><button 
+                    onclick="showTab('contact', this)" 
+                    class="festive-tab text-lg sm:text-xl font-semibold py-4 px-3 transition duration-300 focus:outline-none tracking-wide uppercase"
+                    data-tab-name="contact"
+                >
+                    ★ Connect
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area (Tab Content) --><main class="py-8">
+
+            <!-- Tab Content 1: Profile & Expertise (Center-focused Layout) --><div id="tab-profile" class="tab-content block">
+                <div class="flex flex-col items-center justify-center text-center">
+                    
+                    <!-- Profile Picture (PFP) with White Glow -->
+                    <img 
+                        src="164724b27bc4b2a08a8da3b6c0caf006.webp" 
+                        alt="Aiden's festive profile picture" 
+                        class="pfp-glow mb-10"
+                        onerror="this.style.display='none'; this.after(document.createTextNode('PFP Load Error'));"
+                    >
+
+                    <h2 class="text-4xl font-bold mb-6 uppercase tracking-wider white-glow/70">
+                        Core Directive
+                    </h2>
+                    <div class="max-w-3xl space-y-6 text-gray-200 leading-relaxed text-lg px-4 sm:px-0">
+                        <!-- Updated profile text -->
+                        <p>
+                            I’m **Aiden**, a 17-year-old **Full Stack Developer** and coder based in sunny **Florida**. I engineer digital experiences, blending my passion for clean code with creative artistry, specializing in immersive application and game development.
+                        </p>
+                        <p>
+                            My expertise spans front-end architecture and server-side logic, with a keen focus on **Roblox development**, where I build engaging virtual worlds and systems. When I'm not coding, I pursue my curiosity as a dedicated **country traveler**, bringing a broad, global perspective to every project I undertake.
+                        </p>
+                    </div>
+
+                    <div class="mt-12 w-full max-w-4xl">
+                        <h2 class="text-3xl font-bold mb-6 uppercase tracking-wider white-glow/70 border-t border-subtle-gray pt-6">
+                            Frameworks & Tools
+                        </h2>
+                        <!-- Updated Frameworks and Tools list -->
+                        <ul class="grid grid-cols-2 md:grid-cols-5 gap-4 text-gray-300 text-base">
+                            <li class="bg-gray-900 p-3 rounded-lg hover:bg-gray-800 transition duration-150 ease-in-out border border-gray-700 shadow-md">◆ Full Stack Architecture</li>
+                            <li class="bg-gray-900 p-3 rounded-lg hover:bg-gray-800 transition duration-150 ease-in-out border border-gray-700 shadow-md">◆ Roblox Studio / Lua</li>
+                            <li class="bg-gray-900 p-3 rounded-lg hover:bg-gray-800 transition duration-150 ease-in-out border border-gray-700 shadow-md">◆ React / Node.js Ecosystem</li>
+                            <li class="bg-gray-900 p-3 rounded-lg hover:bg-gray-800 transition duration-150 ease-in-out border border-gray-700 shadow-md">◆ Database & APIs (NoSQL)</li>
+                            <li class="bg-gray-900 p-3 rounded-lg hover:bg-gray-800 transition duration-150 ease-in-out border border-gray-700 shadow-md">◆ UI/UX Prototyping</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Experience (Hidden by default) --><div id="tab-experience" class="tab-content hidden">
+                <h2 class="text-4xl font-bold mb-8 uppercase tracking-wider white-glow/70 text-center">
+                    Project Chronicle
+                </h2>
+                <div class="space-y-10 max-w-3xl mx-auto">
+                    
+                    <!-- Job Role 1 --><article class="p-8 bg-gray-900/60 rounded-xl border-2 border-gray-700 hover:border-white transition duration-300 shadow-xl">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-semibold text-white white-glow/80">Lead Interface Architect</h3>
+                            <span class="text-sm text-gray-400">2021 &mdash; Present</span>
+                        </div>
+                        <p class="text-gray-400 mb-5">InnovateSphere Labs | Metropolis, CA</p>
+                        <ul class="list-disc list-inside space-y-3 text-gray-200 text-base">
+                            <li>Orchestrated the front-end overhaul for a flagship data visualization platform, boosting user engagement by 35%.</li>
+                            <li>Pioneered a modular React component system, reducing development cycles by 20%.</li>
+                            <li>Integrated advanced real-time data streaming solutions for critical operational dashboards.</li>
+                        </ul>
+                    </article>
+
+                    <!-- Job Role 2 --><article class="p-8 bg-gray-900/60 rounded-xl border-2 border-gray-700 hover:border-white transition duration-300 shadow-xl">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-semibold text-white white-glow/80">Visual Systems Engineer</h3>
+                            <span class="text-sm text-gray-400">2018 &mdash; 2021</span>
+                        </div>
+                        <p class="text-gray-400 mb-5">PixelForge Collective | Global Remote</p>
+                        <ul class="list-disc list-inside space-y-3 text-gray-200 text-base">
+                            <li>Developed high-fidelity prototypes and design systems for multiple client projects, ensuring brand consistency.</li>
+                            <li>Optimized rendering performance for complex SVG animations and interactive data graphs.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Tab Content 3: Contact (Hidden by default) --><div id="tab-contact" class="tab-content hidden">
+                <h2 class="text-4xl font-bold mb-8 uppercase tracking-wider white-glow/70 text-center">
+                    Establish Nexus
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    
+                    <!-- Contact Card 1: Email (Email already updated) --><a href="mailto:aidenbraydoncaleb@gmail.com" class="group block p-8 bg-gray-900/70 rounded-xl transition duration-300 border-2 border-gray-700 hover:border-white hover:bg-gray-800 shadow-lg text-center">
+                        <span class="text-6xl block mb-4 white-glow">⨞</span>
+                        <h3 class="text-xl font-bold text-white group-hover:white-glow">Direct Email</h3>
+                        <p class="text-gray-400 text-sm">aidenbraydoncaleb@gmail.com</p>
+                    </a>
+                    
+                    <!-- Contact Card 2: LinkedIn --><a href="#" class="group block p-8 bg-gray-900/70 rounded-xl transition duration-300 border-2 border-gray-700 hover:border-white hover:bg-gray-800 shadow-lg text-center">
+                        <span class="text-6xl block mb-4 white-glow">⎈</span>
+                        <h3 class="text-xl font-bold text-white group-hover:white-glow">Professional Grid</h3>
+                        <p class="text-gray-400 text-sm">View my network</p>
+                    </a>
+                    
+                    <!-- Contact Card 3: GitHub --><a href="#" class="group block p-8 bg-gray-900/70 rounded-xl transition duration-300 border-2 border-gray-700 hover:border-white hover:bg-gray-800 shadow-lg text-center">
+                        <span class="text-6xl block mb-4 white-glow">▧</span>
+                        <h3 class="text-xl font-bold text-white group-hover:white-glow">Code Repository</h3>
+                        <p class="text-gray-400 text-sm">Explore my projects</p>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer Section --><footer class="mt-20 pt-8 border-t-2 border-subtle-gray">
+            <p class="text-sm text-center text-gray-500">
+                &copy; 2025 Aiden. Engineered with Festive Precision.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript for Tab Switching and Snow Generation -->
+    <script>
+        /**
+         * Function to handle tab switching.
+         */
+        function showTab(tabId, clickedButton) {
+            // 1. Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            // 2. Remove 'active' class from all buttons
+            document.querySelectorAll('.festive-tab').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // 3. Show the selected tab content
+            const targetContent = document.getElementById('tab-' + tabId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                targetContent.classList.add('block');
+            }
+
+            // 4. Add 'active' class to the clicked button
+            clickedButton.classList.add('active');
+        }
+
+        /**
+         * Generates and animates falling snowflakes.
+         */
+        function generateSnow() {
+            const snowContainer = document.getElementById('snow-container');
+            const numFlakes = 75;
+
+            for (let i = 0; i < numFlakes; i++) {
+                const flake = document.createElement('div');
+                flake.classList.add('flake');
+                
+                // Random size (2px to 6px)
+                const size = Math.random() * 4 + 2; 
+                flake.style.width = `${size}px`;
+                flake.style.height = `${size}px`;
+
+                // Random starting X position
+                flake.style.left = `${Math.random() * 100}vw`;
+
+                // Random animation duration (slower for larger flakes, faster for smaller)
+                const duration = Math.random() * 15 + 10; // 10s to 25s
+                flake.style.animationDuration = `${duration}s`;
+                
+                // Random delay to stagger starting times
+                const delay = Math.random() * -duration;
+                flake.style.animationDelay = `${delay}s`; 
+
+                // Add slight blur for soft glow (more designed look)
+                flake.style.filter = `blur(${Math.random() * 1}px)`; 
+                
+                snowContainer.appendChild(flake);
+            }
+        }
+
+        // Initialize snow generation once the window loads
+        window.onload = generateSnow;
+    </script>
+</body>
+</html>
